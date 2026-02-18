@@ -1,0 +1,15 @@
+POST http://localhost:3000/bookings
+Content-Type: application/json
+
+{
+  "listingId": 1,
+  "startDate": "2027-01-01",
+  "endDate": "2027-08-01"
+}
+
+# POST http://localhost:3000/listings
+# Content-Type: application/json
+
+# {
+#   "name": "London Flat"
+# }
