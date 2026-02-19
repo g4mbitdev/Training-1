@@ -36,12 +36,23 @@ app.get("/listings", (req, res) => {
 });
 
 app.post("/bookings", (req, res) => {
+
   const {listingId, startDate, endDate} = req.body;
+  const start = new Date(startDate);
+  const end = new Date(endDate);
 
   if(!listingId || !startDate || !endDate) {
     return res.status(400).json({
       error: "Parameters are missing"
     });
+  }
+
+  if(isNaN(start) || isNaN(end)) {
+    return res.status(400).json({error: "Invalid date format."});
+  }
+
+  if(start >= end) {
+    return res.status(400).json({error: "End date must be after start date."})
   }
 
   const listingExists = listings.find(l => l.id === listingId);
